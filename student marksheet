@@ -1,0 +1,365 @@
+# include <iostream>
+
+# include <iomanip>
+
+using namespace std;
+
+int count=0;
+
+struct student
+{
+		
+string name;
+string roll;
+int sem;
+string subject1;
+string subject2;
+string subject3;
+string subject4;
+string subject5;
+string GPA;
+float marks1,marks2,marks3,marks4,marks5,per;
+float total;
+	
+	
+} stud[10];
+void insert()
+{
+	system("cls");
+	cout<<"****new student data***";
+	cout<<"\nEnter student name:";
+	cin>>stud[count].name;
+	cout<<"Enter student roll no :";
+	cin>>stud[count].roll;
+	cout<<"Enter semister no:";
+	cin>>stud[count].sem;
+	cout<<"Enter subject 1 name:";
+	cin>>stud[count].subject1;
+	cout<<"Enter subject 1 marks:";
+	cin>>stud[count].marks1;
+	cout<<"Enter subject 2 name:";
+	cin>>stud[count].subject2;
+	cout<<"Enter subject 2 marks:";
+	cin>>stud[count].marks2;
+	cout<<"Enter subject 3 name:";
+	cin>>stud[count].subject3;
+	cout<<"Enter subject 3 marks:";
+	cin>>stud[count].marks3;
+	cout<<"Enter subject 4 name:";
+	cin>>stud[count].subject4;
+	cout<<"Enter subject 4 marks:";
+	cin>>stud[count].marks4;
+	cout<<"Enter subject 5 name:";
+	cin>>stud[count].subject5;
+	cout<<"Enter subject 1 marks:";
+	cin>>stud[count].marks5;
+	 stud[count].total =stud[count].marks1+stud[count].marks2+stud[count].marks3+stud[count].marks4+stud[count].marks5;         // 
+	stud[count].per=stud[count].total/500*100;
+	if(stud[count].per>=90)
+	stud[count].GPA ="A";
+	else if (stud[count].per > 84 && stud[count].per < 90)
+    stud[count].GPA = "A-";
+else if (stud[count].per >= 80 && stud[count].per < 85)
+    stud[count].GPA = "B+";
+else if (stud[count].per >= 75 && stud[count].per <= 79)
+    stud[count].GPA = "B-";
+else if (stud[count].per >= 65 && stud[count].per <= 69)
+    stud[count].GPA = "C+";
+else if (stud[count].per >= 60 && stud[count].per <= 64)
+    stud[count].GPA = "C";
+else if (stud[count].per >= 55 && stud[count].per <= 59)
+    stud[count].GPA = "C-";
+else if (stud[count].per >= 50 && stud[count].per <= 54)
+    stud[count].GPA = "D";
+else if (stud[count].per < 50)
+    stud[count].GPA = "F";
+    count++;
+    cout<<" Record added sucessfully";
+}
+  void display()
+   {
+   	system("cls");
+  	cout<<" Display Individual Student Marks Sheet:";
+  	if(count==0)
+  	{
+	
+  	cout<<"NO RECORD FOUND";
+  }
+  	else
+  	{
+  		int found=0;
+  		string roll;
+  		cout<<"Enter student roll number ";
+  		cin>>roll;
+  		for(int i=0;i<count;i++)
+  		{
+  			if(roll== stud[i].roll)
+  			{
+			  
+  			 cout<<"\n                             HITEC University Taxila";
+       cout<"\n                            Student Marks Sheet";
+       cout<<"\nName:"<<stud[i].name;
+       cout<<"\nRoll no:"<<stud[i].roll;
+        cout<<"\nSemister no:"<<stud[i].sem;
+        cout<<"\nSubject name           marks "<<endl;
+        cout<<stud[i].subject1     <<                 "\t\t\t"           <<   stud[i].marks1<<endl;
+        cout<<stud[i].subject2      <<                "\t\t\t"        <<    stud[i].marks2<<endl;
+        cout<<stud[i].subject3        <<             "\t\t\t"        <<    stud[i].marks3<<endl;
+        cout<<stud[i].subject4          <<            "\t\t\t"        <<    stud[i].marks4<<endl;
+        cout<<stud[i].subject5            <<       "\t\t\t"        <<    stud[i].marks5<<endl;
+        cout<<"TOTAL MARKS    : 500";
+        cout<<"\nOBTAINED MARKS :"<<stud[i].total;
+        cout<<"\nPERSENTAGE:"<<"%"<<stud[i].per;
+        cout<<"\nGPA         "      <<stud[i].GPA;
+        
+        found++;
+        }
+        
+		}
+		if(found=0)
+		{
+			cout<<"RECORD NOT FOUND";
+		}
+	 }
+  	 
+  }
+  
+  void studentdelete()
+  {
+
+    system("cls");
+    cout << " Delete Student Record:";
+
+    if (count == 0)
+    {
+        cout << "NO RECORD FOUND";
+    }
+    else
+    {
+        int found = 0;
+        string roll;
+        cout << "Enter student roll number to delete: ";
+        cin >> roll;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (roll == stud[i].roll)
+            {
+                // Shift the records to overwrite the one being deleted
+                for (int j = i; j < count - 1; j++)
+                {
+                    stud[j] = stud[j + 1];
+                }
+
+                count--;
+
+                cout << "Record Deleted Successfully";
+                found++;
+                break; // Exit the loop once a match is found and deleted
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "RECORD NOT FOUND";
+        }
+    }
+}
+
+  
+  
+  
+ void update()
+{
+    system("cls");
+    cout << " Update Student Data:";
+
+    if (count == 0)
+    {
+        cout << "NO RECORD FOUND";
+    }
+    else
+    {
+        int found = 0;
+        string roll;
+        cout << "Enter student roll number: ";
+        cin >> roll;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (roll == stud[i].roll)
+            {
+                cout << "\n                             HITEC University Taxila";
+                cout << "\n                            Student Marks Sheet";
+                cout << "\nName: " << stud[i].name;
+                cout << "\nRoll no: " << stud[i].roll;
+                cout << "\nSemester no: " << stud[i].sem;
+                cout << "\nSubject name           Marks " << endl;
+                cout << stud[i].subject1 << "\t\t\t" << stud[i].marks1 << endl;
+                cout << stud[i].subject2 << "\t\t\t" << stud[i].marks2 << endl;
+                cout << stud[i].subject3 << "\t\t\t" << stud[i].marks3 << endl;
+                cout << stud[i].subject4 << "\t\t\t" << stud[i].marks4 << endl;
+                cout << stud[i].subject5 << "\t\t\t" << stud[i].marks5 << endl;
+                cout << "TOTAL MARKS      : 500";
+                cout << "\nOBTAINED MARKS : " << stud[i].total;
+                cout << "\nPERCENTAGE: %" << stud[i].per;
+                cout << "\nGPA         : " << stud[i].GPA;
+
+                found++;
+
+                // Update student data
+                cout << "\n\n****Update Student Data****";
+                cout << "\nEnter student name: ";
+                cin >> stud[i].name;
+                	cout<<"Enter student roll no :";
+	cin>>stud[count].roll;
+	cout<<"Enter semister no:";
+	cin>>stud[count].sem;
+	cout<<"Enter subject 1 name:";
+	cin>>stud[count].subject1;
+	cout<<"Enter subject 1 marks:";
+	cin>>stud[count].marks1;
+	cout<<"Enter subject 2 name:";
+	cin>>stud[count].subject2;
+	cout<<"Enter subject 2 marks:";
+	cin>>stud[count].marks2;
+	cout<<"Enter subject 3 name:";
+	cin>>stud[count].subject3;
+	cout<<"Enter subject 3 marks:";
+	cin>>stud[count].marks3;
+	cout<<"Enter subject 4 name:";
+	cin>>stud[count].subject4;
+	cout<<"Enter subject 4 marks:";
+	cin>>stud[count].marks4;
+	cout<<"Enter subject 5 name:";
+	cin>>stud[count].subject5;
+	cout<<"Enter subject 5 marks:";
+	cin>>stud[count].marks5;
+	 stud[count].total =stud[count].marks1+stud[count].marks2+stud[count].marks3+stud[count].marks4+stud[count].marks5;         // 
+	stud[count].per=stud[count].total/500*100;
+	if(stud[count].per>=90)
+	stud[count].GPA ="A";
+	else if (stud[count].per > 84 && stud[count].per < 90)
+    stud[count].GPA = "A-";
+else if (stud[count].per >= 80 && stud[count].per < 85)
+    stud[count].GPA = "B+";
+else if (stud[count].per >= 75 && stud[count].per <= 79)
+    stud[count].GPA = "B-";
+else if (stud[count].per >= 65 && stud[count].per <= 69)
+    stud[count].GPA = "C+";
+else if (stud[count].per >= 60 && stud[count].per <= 64)
+    stud[count].GPA = "C";
+else if (stud[count].per >= 55 && stud[count].per <= 59)
+    stud[count].GPA = "C-";
+else if (stud[count].per >= 50 && stud[count].per <= 54)
+    stud[count].GPA = "D";
+else if (stud[count].per < 50)
+    stud[count].GPA = "F";
+    count++;
+                // You can choose to update other fields as well if needed
+                // ...
+                
+                cout << "\nRecord Updated successfully";
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "RECORD NOT FOUND";
+        }
+    }
+}
+
+
+// ... (Your existing code for the student structure and functions)
+
+void showAllRecords()
+{
+    system("cls");
+    cout << " Displaying All Student Records:\n";
+    
+    if (count == 0)
+    {
+        cout << "NO RECORDS FOUND\n";
+    }
+    else
+    {
+        cout << "------------------------------------------------------------------------------------------------------------------\n";
+        cout << "Roll No. | Sub1 | Marks | Sub2 | Marks | Sub3 | Marks | Sub4 | Marks | Sub5 | Marks |%age | GPA\n";
+        cout << "------------------------------------------------------------------------------------------------------------------\n";
+
+        for (int i = 0; i < count; i++)
+        {
+            cout << setw(9) << stud[i].roll << " | ";
+            cout << setw(4) << stud[i].subject1 << " | " << setw(5) << stud[i].marks1 << " | ";
+            cout << setw(4) << stud[i].subject2 << " | " << setw(5) << stud[i].marks2 << " | ";
+            cout << setw(4) << stud[i].subject3 << " | " << setw(5) << stud[i].marks3 << " | ";
+            cout << setw(4) << stud[i].subject4 << " | " << setw(5) << stud[i].marks4 << " | ";
+            cout << setw(4) << stud[i].subject5 << " | " << setw(5) << stud[i].marks5 << " | ";
+            cout << setw(4) << stud[i].per << " | ";
+            cout << setw(4) << stud[i].GPA << endl;
+        }
+
+        cout << "------------------------------------------------------------------------------------------------------------------\n";
+    }
+}
+
+
+int main()
+{
+    char choice;
+
+    do {
+        cout << "                  HITEC University Taxila                   ";
+        cout << "\n                  Student Marks Sheet Management System     ";
+        cout << "\nEnter your choice";
+        cout << "\npress  n for Enter new student data";
+        cout << "\nPress  i for Display Individual student marks sheet";
+        cout << "\nPress  d for Delete student";
+        cout << "\nPress  u for Update an individual student record";
+        cout << "\nPress  s for Show all students records";
+        cout << "\nPress  e for exit";
+        cin >> choice;
+
+        switch (choice) {
+            case 'n':
+            
+                cout << "Enter new student data...\n";
+              insert();
+                break;
+
+            case 'i':
+                cout << "Display Individual Student Marks Sheet...\n";
+                display();
+                break;
+
+            case 'd':
+                
+                cout << "Delete student...\n";
+            studentdelete();
+                break;
+
+            case 'u':
+                
+                cout << "Update an individual student record...\n";
+                update();
+                break;
+
+            case 's':
+                
+                cout << "Show all students records...\n";
+               showAllRecords();
+                break;
+
+            case 'e':
+                cout << "Exiting the program. Goodbye!\n";
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 'e');
+
+    return 0;
+}
+
